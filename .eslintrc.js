@@ -24,6 +24,12 @@ module.exports = {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
+      alias: {
+        map: [
+          ['@components', './src/components/'],
+        ],
+        extensions: ['.ts', '.js', '.jsx', '.json', '.ts', '.tsx'],
+      },
     },
   },
   plugins: [
@@ -35,5 +41,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'no-use-before-define': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/prop-types': 'off',
   },
 };
