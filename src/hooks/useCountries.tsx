@@ -4,6 +4,7 @@ interface Country {
   _id: string,
   name: string,
   alpha2Code: string,
+  population: number,
 }
 
 interface UseCountries {
@@ -23,6 +24,7 @@ const GET_COUNTRIES = gql`
       _id,
       name,
       alpha2Code,
+      population,
     }
   }
 `;
@@ -43,16 +45,7 @@ const GET_COUNTRIES_BY_FILTER = gql`
       _id,
       name,
       alpha2Code,
-      currencies {
-        code,
-        name,
-      },
-      officialLanguages {
-        _id,
-        name,
-        nativeName,
-        iso639_2,
-      }
+      population,
     }
   } 
 `;
@@ -65,19 +58,15 @@ const useCountries = (): UseCountries => {
     refetch: refetchDataByFilter,
   } = useQuery(GET_COUNTRIES_BY_FILTER, {
     variables: {
+      searchText: '',
       currency: '',
       language: '',
       region: '',
-      searchText: '',
     },
   });
 
   const searchByFilter = (filters: Filter) => {
-    const { searchText } = filters;
-
-    refetchDataByFilter({
-      searchText,
-    });
+    refetchDataByFilter(filters);
   };
 
   return {

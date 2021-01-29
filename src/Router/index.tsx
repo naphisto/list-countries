@@ -10,7 +10,7 @@ const client = new ApolloClient({
 });
 
 const AppRouter: React.FC = () => (
-  <div className="p-10">
+  <div className="p-5 sm:p-10">
     <ApolloProvider client={client}>
       <Router>
         <Countries path="/" />
